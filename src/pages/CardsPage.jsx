@@ -1,23 +1,29 @@
-import React from 'react';
-import { useGetInstruments } from '../hooks/useGetInstruments';
 import PageLayout from '../components/templates/PageLayout';
 import InstrumentCardGrid from '../components/organisms/InstrumentCardGrid';
 
-export default function CardsPage() {
-  const { instrumentos, carregando, erro } = useGetInstruments();
+export default function CardsPage(props) {
+  const { 
+    instrumentos, 
+    carregando, 
+    erro, 
+    termoBusca, 
+    onBuscaChange 
+  } = props;
 
   const renderContent = () => {
-    if (carregando) {
-      return <p>Carregando instrumentos...</p>;
+    if (carregando) return <p>Carregando instrumentos...</p>;
+    if (erro) return <p>Ocorreu um erro: {erro.message}</p>;
+
+    // Mostra mensagem se a busca não retornar resultados
+    if (instrumentos.length === 0 && termoBusca) {
+      return <p>Nenhum instrumento encontrado para "{termoBusca}".</p>
     }
-    if (erro) {
-      return <p>Ocorreu um erro ao buscar os dados: {erro.message}</p>;
-    }
+    
     return <InstrumentCardGrid instrumentos={instrumentos} />;
   };
 
   return (
-    <PageLayout>
+    <PageLayout termoBusca={termoBusca} onBuscaChange={onBuscaChange}>
       {renderContent()}
     </PageLayout>
   );

@@ -47,13 +47,15 @@ nav {
   padding: 10px 15px;
   border: 1px solid var(--cor-primaria);
   border-radius: 5px;
-  transition: all 0.3s ease;
+  transition: all .3s ease;
   font-weight: bold;
 }
 
-.nav-link:hover {
-  background: var(--cor-primaria);
+.nav-link:hover, .nav-link.active  {
+      background-color: var(--cor-primaria);
   color: #fff;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  transform: translateY(-2px); 
 }
 
 table {

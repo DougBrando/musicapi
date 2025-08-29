@@ -1,3 +1,4 @@
+import { formatCurrency } from '../../utils/formatters';
 import StatusIndicator from '../atoms/StatusIndicator';
 
 export default function InstrumentCardGrid({ instrumentos = [] }) {
@@ -20,7 +21,7 @@ export default function InstrumentCardGrid({ instrumentos = [] }) {
               <strong>Ano:</strong> {instrumento.ano}
             </li>
             <li>
-              <strong>Preço:</strong> {instrumento.preco}
+              <strong>Preço:</strong> {formatCurrency(instrumento.preco)}
             </li>
             <li>
               <strong>Peso (kg):</strong> {instrumento.peso_kg}

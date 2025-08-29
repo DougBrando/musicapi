@@ -1,4 +1,4 @@
-import NavLink from '../atoms/NavLink';
+import NavLink from '../atoms/NavLinkAtom';
 
 export default function NavigationBar() {
   return (
