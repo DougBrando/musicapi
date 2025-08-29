@@ -6,7 +6,7 @@
 
 Music Place é uma aplicação front-end desenvolvida em React para consumir, listar e interagir com uma API de instrumentos musicais. O projeto foi construído progressivamente, aplicando conceitos modernos de arquitetura de software como **Atomic Design** e gerenciamento de estado avançado, resultando em uma base de código limpa, organizada e escalável.
 
-**[➡️ Ver demonstração online](URL_DO_SEU_DEPLOY_AQUI)**
+**[➡️ Ver demonstração online](https://catalogo-de-instrumentos.netlify.app/)**
 
 ---
 
