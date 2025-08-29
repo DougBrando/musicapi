@@ -1,35 +1,81 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import React, { useState, useMemo } from 'react';
+import { Routes, Route } from 'react-router-dom';
+import { useGetInstruments } from './hooks/useGetInstruments';
+
+import './App.css';
+
+import TabelaPage from './pages/TabelaPage';
+import CardsPage from './pages/CardsPage';
 
 function App() {
-  const [count, setCount] = useState(0)
+  const { instrumentos, carregando, erro } = useGetInstruments();
+  const [termoBusca, setTermoBusca] = useState('');
+  const [ordenacao, setOrdenacao] = useState({ chave: 'nome', direcao: 'ascendente' });
+
+  const instrumentosExibidos = useMemo(() => {
+    let instrumentosFiltrados = [...instrumentos];
+    
+    if (termoBusca) {
+      instrumentosFiltrados = instrumentosFiltrados.filter(inst =>
+        inst.nome.toLowerCase().includes(termoBusca.toLowerCase())
+      );
+    }
+
+    if (ordenacao.chave) {
+      instrumentosFiltrados.sort((a, b) => {
+        if (a[ordenacao.chave] < b[ordenacao.chave]) {
+          return ordenacao.direcao === 'ascendente' ? -1 : 1;
+        }
+        if (a[ordenacao.chave] > b[ordenacao.chave]) {
+          return ordenacao.direcao === 'ascendente' ? 1 : -1;
+        }
+        return 0;
+      });
+    }
+    return instrumentosFiltrados;
+  }, [instrumentos, termoBusca, ordenacao]);
+
+  const handleBuscaChange = (event) => {
+    setTermoBusca(event.target.value);
+  };
+
+  const handleOrdenacao = (chave) => {
+    setOrdenacao(ordemAtual => ({
+      chave,
+      direcao: ordemAtual.chave === chave && ordemAtual.direcao === 'ascendente' ? 'descendente' : 'ascendente'
+    }));
+  };
 
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+      <Routes>
+        <Route
+          path="/"
+          element={
+            <TabelaPage
+              instrumentos={instrumentosExibidos}
+              carregando={carregando}
+              erro={erro}
+              termoBusca={termoBusca}
+              onBuscaChange={handleBuscaChange}
+              onOrdenacao={handleOrdenacao}
+              ordenacao={ordenacao}
+            />
+          }
+        />
+        <Route
+          path="/card"
+          element={
+            <CardsPage
+              instrumentos={instrumentosExibidos}
+              carregando={carregando}
+              erro={erro}
+              termoBusca={termoBusca}
+              onBuscaChange={handleBuscaChange}
+            />
+          }
+        />
+      </Routes>
+  );
 }
 
-export default App
+export default App;
