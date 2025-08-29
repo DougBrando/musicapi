@@ -1,20 +1,16 @@
-import { Route, Routes } from 'react-router-dom'
-import './App.css'
-import Cards from './pages/Cards'
-import Tabela from './pages/Tabela'
+import { Routes, Route } from 'react-router-dom';
+import TabelaPage from './pages/TabelaPage';
+import CardsPage from './pages/CardsPage';
+import './App.css';
+
 
 function App() {
- 
-
   return (
-    <>
     <Routes>
-      <Route path="/" element={<Cards />} />
-      <Route path="/tabela" element={<Tabela />} />
+      <Route path="/" element={<TabelaPage />} />
+      <Route path="/card" element={<CardsPage />} />
     </Routes>
-     
-    </>
-  )
+  );
 }
 
-export default App
+export default App;

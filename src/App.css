@@ -1,48 +1,181 @@
-*{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+:root {
+  --cor-primaria: #303030;
+  --cor-texto: #333;
+  --cor-borda-suave: #dddddd;
+  --cor-verde: #28a745;
+  --cor-vermelho: #dc3545;
+  --fundo-claro: #f8f8f8;
+  --sombra-padrao: 0 4px 15px rgba(0, 0, 0, 0.1);
+  --raio-borda: 8px;
 }
 
-body{
-    font-family: Arial, Helvetica, sans-serif;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Roboto', sans-serif;
 }
-main{
-    margin: 0 auto;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-}
-.tabela{
-    border-radius: 10px;
 
+body {
+  background-color: var(--fundo-claro);
+  color: var(--cor-texto);
 }
-.tabela th{
-    padding:10px;
-    text-align: left;
-    background-color: #000;
-    color: white;
-    border: 1px solid #000;
-    font-weight: bold;
-}
-.tabela th:first-child{
-    border-radius: 5px 0 0 0;
-}
-.tabela th:last-child{
-    border-radius: 0 5px 0 0;
-}
-.tabela td{
-    padding:10px;
-    border: 1px solid #000;
-}
-.tabela tr:nth-child(even){
-    background-color: #ddd;
-}
-.tabela tr:last-child td:first-child{
-        border-radius:  0 0 0 5px;
 
+main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  max-width: 900px;
+  width: 95%;
+  margin: 20px auto;
+  padding: 20px;
+  border-radius: var(--raio-borda);
+  background: #fff;
+  box-shadow: var(--sombra-padrao);
 }
-.tabela tr:last-child td:last-child{
-    border-radius:  0 0 5px 0;
+
+nav {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
 }
+
+.nav-link {
+  text-decoration: none;
+  color: var(--cor-primaria);
+  padding: 10px 15px;
+  border: 1px solid var(--cor-primaria);
+  border-radius: 5px;
+  transition: all 0.3s ease;
+  font-weight: bold;
+}
+
+.nav-link:hover {
+  background: var(--cor-primaria);
+  color: #fff;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+  font-size: 0.9em;
+  border-radius: var(--raio-borda);
+  overflow: hidden;
+  box-shadow: var(--sombra-padrao);
+  background: #ffffff;
+  text-align: left;
+}
+
+th {
+  padding: 12px 15px;
+  background: var(--cor-primaria);
+  color: #ffffff;
+  font-weight: bold;
+  text-align: left;
+  text-transform: capitalize;
+}
+
+td {
+  padding: 12px 15px;
+  border-bottom: 1px solid var(--cor-borda-suave);
+}
+
+tbody tr:nth-child(even) {
+  background-color: var(--fundo-claro);
+}
+
+tbody tr:hover {
+  background-color: #e8e8e8;
+  cursor: pointer;
+}
+
+.cards {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+  margin-top: 20px;
+  width: 100%;
+}
+
+.card {
+  border: 1px solid var(--cor-borda-suave);
+  border-radius: var(--raio-borda);
+  padding: 20px;
+  background: #fff;
+  box-shadow: var(--sombra-padrao);
+  text-align: left;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  flex-basis: 250px;
+  flex-grow: 1;
+  max-width: 300px;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+.card h3 {
+  margin-bottom: 15px;
+  color: var(--cor-primaria);
+}
+
+.card ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.card ul li {
+  margin-bottom: 8px;
+  text-transform: capitalize;
+}
+
+.status-ativo, .status-inativo {
+  font-weight: bold;
+  padding: 5px 10px;
+  border-radius: 15px;
+  font-size: 0.8em;
+}
+
+.status-ativo {
+  color: var(--cor-verde);
+  background-color: rgba(40, 167, 69, 0.1);
+}
+
+.status-inativo {
+  color: var(--cor-vermelho);
+  background-color: rgba(220, 53, 69, 0.1);
+}
+
+th:nth-child(1), td:nth-child(1) { width: 30%; min-width: 180px; }
+th:nth-child(4), td:nth-child(4),
+th:nth-child(5), td:nth-child(5),
+th:nth-child(6), td:nth-child(6),
+th:nth-child(7), td:nth-child(7) { text-align: right; }
+th:nth-child(8), td:nth-child(8) { text-align: center; min-width: 110px; }
+
+
+
+/* Componente status */
+.status-ativo, .status-inativo {
+  font-weight: bold;
+  padding: 5px 10px;
+  border-radius: 15px;
+  font-size: 0.8em;
+}
+
+.status-ativo {
+  color: var(--cor-verde);
+  background-color: rgba(40, 167, 69, 0.1);
+}
+
+.status-inativo {
+  color: var(--cor-vermelho);
+  background-color: rgba(220, 53, 69, 0.1);
+}
+
