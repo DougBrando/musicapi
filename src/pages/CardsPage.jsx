@@ -11,6 +11,7 @@ export default function CardsPage({
 }) {
   usePageTitle('Cards de Instrumentos');
 
+  
   const renderContent = () => {
     if (carregando) return <p>Carregando instrumentos...</p>;
     if (erro) return <p>Ocorreu um erro: {erro.message}</p>;
